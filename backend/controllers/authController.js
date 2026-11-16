@@ -303,6 +303,22 @@ export const verify2faLogin=async(req,res)=>{
     }
 }
 
+export const getMe = async (req, res, next) => {
+    try {
+        // req.user = { userId, iat, exp } set by authMiddleware
+        const user = await User.findById(req.user.userId)
+            .select('-password -otp -otpExpire');
+
+        if (!user) {
+            return next(new AppError(401, 'User no longer exists'));
+        }
+
+        res.status(200).json({ user });
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 
 

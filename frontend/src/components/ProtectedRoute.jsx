@@ -1,13 +1,20 @@
-import { Navigate, Outlet } from "react-router-dom";
+ import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function ProtectedRoute() {
 
-    const token = localStorage.getItem("token");
+    const { user, loading } = useAuth();
+    const location = useLocation();
 
-    return token ? (
+    // Wait for the backend to answer before deciding
+    if (loading) {
+        return <div className="loading-state">Checking session...</div>;
+    }
+
+    return user ? (
         <Outlet />
     ) : (
-        <Navigate to="/login" replace />
+        <Navigate to="/login" replace state={{ from: location }} />
     );
 }
 

@@ -1,13 +1,14 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShoppingBag, Package, Plus, LogOut } from "lucide-react";
-
-function Navbar() {
+import { useAuth } from "../hooks/useAuth";
+ function Navbar() {
 
     const navigate = useNavigate();
+    const {logout}=useAuth()
 
     const handleLogout = () => {
 
-        localStorage.removeItem("token");
+          logout();    
 
         navigate("/login", {
             replace: true

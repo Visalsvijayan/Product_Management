@@ -2,10 +2,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { LogIn } from "lucide-react";
 import API from "../api/axios";
+import { useAuth } from "../hooks/useAuth.js";
+
 
 function Login() {
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -36,10 +39,12 @@ function Login() {
                 formData
             );
 
-            localStorage.setItem(
-                "token",
-                response.data.token
-            );
+
+            await login(response.data.token);
+            // localStorage.setItem(
+            //     "token",
+            //     response.data.token
+            // );
 
             navigate("/products", {
                 replace: true

@@ -45,7 +45,6 @@ function CreateProduct() {
 
         setError("");
         setImage(file);
-
         const imageUrl = URL.createObjectURL(file);
         setPreview(imageUrl);
     };
@@ -60,6 +59,7 @@ function CreateProduct() {
         try {
 
             const data = new FormData();
+         
 
             Object.entries(formData).forEach(([key, value]) => {
                 data.append(key, value);
