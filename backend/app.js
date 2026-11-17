@@ -6,11 +6,14 @@ import userRoutes from './routes/userRoutes.js'
 import authMiddleware from './middleware/authMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
 import errorHandler from './middleware/errorHandler.js'
+import cors from 'cors'
+
 import { fileURLToPath } from 'url'
+import path from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-import path from 'path'
-import cors from 'cors'
+
+
 
 const app=express()
 dotenv.config()

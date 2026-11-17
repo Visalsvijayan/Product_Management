@@ -56,7 +56,7 @@ button:disabled {
     background: #1d4ed8;
 }
 
-.error-message {
+.error-message { 
     padding: 12px;
     background: #fef2f2;
     color: #dc2626;
