@@ -12,12 +12,14 @@ import { fileURLToPath } from 'url'
 import path from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+dotenv.config()
+
 const PORT = process.env.PORT || 3000;
 
 
 
 const app=express()
-dotenv.config()
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
