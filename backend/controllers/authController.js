@@ -33,6 +33,14 @@ export const signup=async(req,res)=>{
             phone,
             otp
         })
+         await transpoter.sendMail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: "Account verification",
+            text: `Your account verification otp is ${otp} `
+            
+        })
+
 
         await newUser.save();
         
