@@ -33,13 +33,13 @@ export const signup=async(req,res)=>{
             phone,
             otp
         })
-         await transpoter.sendMail({
-            from: process.env.EMAIL,
-            to: email,
-            subject: "Account verification",
-            text: `Your account verification otp is ${otp} `
+        //  await transpoter.sendMail({
+        //     from: process.env.EMAIL,
+        //     to: email,
+        //     subject: "Account verification",
+        //     text: `Your account verification otp is ${otp} `
             
-        })
+        // })
 
 
         await newUser.save();
@@ -50,8 +50,9 @@ export const signup=async(req,res)=>{
         res.status(201).json({message:"user signup successful,please verify your email"})
 
     } catch (error) {
+         console.log(error)
         res.status(500).json({message:"server error"})
-        console.log(error)
+       
     }
 }
 
@@ -63,9 +64,10 @@ export const verifyOtp=async(req,res)=>{
             return res.status(400).json({message:"email and otp required"})
         }
         const user=await User.findOne({email})
-        if(!user || user.otp!==otp){
-            return res.status(400).json({message:"invalid otp"})
-        }
+        //for production disabale otp validation
+        // if(!user || user.otp!==otp){
+        //     return res.status(400).json({message:"invalid otp"})
+        // }
 
         user.isVerified=true;
         user.otp=null;
