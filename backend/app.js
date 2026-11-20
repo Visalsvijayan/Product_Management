@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url'
 import path from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -21,10 +22,17 @@ dotenv.config()
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(express.json())
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//     Credentials:true
+// }))
 app.use(cors({
-    origin: 'http://localhost:5173',
-    Credentials:true
-}))
+    origin: [
+        'http://localhost:5173',
+        process.env.CLIENT_URL
+    ],
+    credentials: true
+}));
 
 connectDb()
 
@@ -38,4 +46,4 @@ app.use(errorHandler)
 
 
 
-app.listen(process.env.PORT,()=>console.log(`server running on ${process.env.PORT}`))
+app.listen(PORT,()=>console.log(`server running on ${PORT}`))

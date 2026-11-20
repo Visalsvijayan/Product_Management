@@ -13,7 +13,8 @@ export const createProduct=async(req,res)=>{
                 price,
                 stock,
                 category,
-                image:req.file?.filename || null
+                image:req.file?.path || null,
+                imagePublicId: req.file?.filename || null,
                  
             })
             await newProduct.save();

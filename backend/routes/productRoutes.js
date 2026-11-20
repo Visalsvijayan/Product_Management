@@ -1,6 +1,6 @@
 import express from 'express'
 import {createProduct,getProducts} from '../controllers/productController.js'
-import upload from '../middleware/upload.js';
+import upload from '../middleware/uploadMiddleware.js';
 import authMiddleware from '../middleware/authMiddleware.js';
 const router=express.Router();
 

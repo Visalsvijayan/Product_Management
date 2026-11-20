@@ -6,8 +6,16 @@ const productSchema=new mongoose.Schema({
     price:{type:Number,requrired:true},
     category:String,
     stock:{type:Number,default:0},
-    image:String,
-    createdAt:{type:Date,default:Date.now}
+    createdAt:{type:Date,default:Date.now},
+    image: {
+        type:String,
+        default: null,
+    },
+
+    imagePublicId: {
+        type: String,
+        default: null,
+    }
 })
 
 export default mongoose.model('Product',productSchema)
